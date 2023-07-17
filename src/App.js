@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route
           exact
-          path="https://memories-53t4.onrender.com"
+          path="https://memories-53t4.onrender.com/"
           element={<MainLayout />}
         >
           <Route index element={<HomePage />} />
