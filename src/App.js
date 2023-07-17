@@ -14,10 +14,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<MainLayout />}>
+        <Route
+          exact
+          path="https://memories-53t4.onrender.com"
+          element={<MainLayout />}
+        >
           <Route index element={<HomePage />} />
           <Route path="/sign-in-page" element={<SignInPage />} />
-          <Route  path="/sign-up-page" element={<SignUpPage />} />
+          <Route path="/sign-up-page" element={<SignUpPage />} />
           <Route
             path="/add-memory-page"
             element={
