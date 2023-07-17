@@ -15,11 +15,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<MainLayout />}>
-          <Route exact index element={<HomePage />} />
-          <Route exact path="/sign-in-page" element={<SignInPage />} />
-          <Route exact path="/sign-up-page" element={<SignUpPage />} />
+          <Route index element={<HomePage />} />
+          <Route path="/sign-in-page" element={<SignInPage />} />
+          <Route  path="/sign-up-page" element={<SignUpPage />} />
           <Route
-            exact
             path="/add-memory-page"
             element={
               <PrivateRoute>
@@ -28,7 +27,6 @@ function App() {
             }
           />
           <Route
-            exact
             path="/update-memory-page/:id"
             element={
               <PrivateRoute>
@@ -37,7 +35,6 @@ function App() {
             }
           />
           <Route
-            exact
             path="/my-profile"
             element={
               <PrivateRoute>
