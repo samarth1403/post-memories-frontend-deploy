@@ -14,39 +14,35 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          exact
-          path="/"
-          element={<MainLayout />}
-        >
+        <Route exact path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/sign-in-page" element={<SignInPage />} />
-          <Route path="/sign-up-page" element={<SignUpPage />} />
-          <Route
-            path="/add-memory-page"
-            element={
-              <PrivateRoute>
-                <Form />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/update-memory-page/:id"
-            element={
-              <PrivateRoute>
-                <UpdateMemoryComponent />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/my-profile"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
-          />
         </Route>
+        <Route path="/sign-in-page" element={<SignInPage />} />
+        <Route path="/sign-up-page" element={<SignUpPage />} />
+        <Route
+          path="/add-memory-page"
+          element={
+            <PrivateRoute>
+              <Form />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/update-memory-page/:id"
+          element={
+            <PrivateRoute>
+              <UpdateMemoryComponent />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/my-profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
