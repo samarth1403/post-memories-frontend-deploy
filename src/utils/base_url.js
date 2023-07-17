@@ -1,2 +1,2 @@
 
-export const base_url = "https://memories-api.onrender.com";
+export const base_url = "https://memories-api-qic4.onrender.com";
