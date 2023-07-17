@@ -7,5 +7,4 @@ export const store = configureStore({
       user : userReducer,
       memory : memoryReducer
     },
-    devTools: false
 })
