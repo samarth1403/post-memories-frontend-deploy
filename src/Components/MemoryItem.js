@@ -41,7 +41,7 @@ const MemoryItem = ({memory}) => {
 
   return (
     <div
-      className="relative flex flex-col flex-no-wrap flex-shrink-0 justify-center rounded-[33px] w-[380px] mb-12 mt-4 mx-4"
+      className="relative flex flex-col flex-no-wrap flex-shrink-0 justify-center rounded-[33px] min-[320px]:w-[300px] sm:w-[380px] mb-12 mt-4 px-4"
       style={{
         borderRadius: "50px",
         background:
@@ -53,7 +53,7 @@ const MemoryItem = ({memory}) => {
           <img
             src={memory?.image?.url}
             alt="Memory Item"
-            className="w-[380px] h-[380px] rounded-[20px] cursor-pointer"
+            className="min-[320px]:w-[300px] min-[320px]:h-[300px] sm:w-[380px] sm:h-[380px] rounded-[20px] cursor-pointer"
           />
         </div>
       )}
@@ -64,9 +64,9 @@ const MemoryItem = ({memory}) => {
           }}
           src={memory?.image?.url}
           alt="Memory Item"
-          className="w-[200px] h-[200px] rounded-[20px] mx-4 my-4 cursor-pointer"
+          className="min-[320px]:w-[140px] min-[320px]:h-[140px] sm:w-[200px] sm:h-[200px] rounded-[20px] my-4 cursor-pointer"
         />
-        <div className="flex flex-col flex-no-wrap px-4 justify-center items-start mr-4">
+        <div className="flex flex-col flex-no-wrap px-4 justify-center items-start">
           <div className="font-roboto font-normal text-md px-2 mt-3">
             Memory of <p className="font-bold">{DateNew}</p>
           </div>
@@ -93,7 +93,7 @@ const MemoryItem = ({memory}) => {
           {memory?.description}
         </p>
       </div>
-      <div className="flex flex-row flex-no-wrap justify-between items-center px-2 pb-4 mx-6">
+      <div className="flex flex-row flex-no-wrap justify-between items-center px-2 pb-4 px-6">
         <button
           onClick={() => handleClickEdit(memory?._id)}
           className="btn-close"

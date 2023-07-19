@@ -31,7 +31,7 @@ const Profile = () => {
   });
   return (
     <div className="flex flex-col flex-wrap justify-center items-center">
-      <p className="font-roboto font-normal text-[#fff] text-2xl m-6">
+      <p className="font-roboto font-normal text-[#fff] text-center text-2xl m-6">
         You can update your Profile
       </p>
       <form
@@ -39,10 +39,10 @@ const Profile = () => {
         style={{
           background: "linear-gradient(180deg, #ACE7FF 0%, #53FFB8 100%)",
         }}
-        className="flex flex-col flex-no-wrap justify-center items-center w-[360px] lg:w-[500px] rounded-[25px] m-4 pt-6 "
+        className="flex flex-col flex-no-wrap justify-center items-center min-[320px]:w-[280px] sm:w-[450px] lg:w-[450px] rounded-[25px] m-4 pt-6 "
       >
         <Input
-          className="bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
+          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px] h-[75px] text-[#fff] px-4  m-4"
           id="name"
           type="text"
           placeholder="Name"
@@ -57,7 +57,7 @@ const Profile = () => {
           ) : null}
         </div>
         <Input
-          className="bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
+          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px] h-[75px] text-[#fff] px-4  m-4"
           id="email"
           type="text"
           placeholder="Email"
@@ -72,7 +72,7 @@ const Profile = () => {
           ) : null}
         </div>
         <Input
-          className="bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4 m-4"
+          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4 m-4"
           id="mobile"
           type="number"
           placeholder="Phone Number"

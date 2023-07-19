@@ -5,10 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { registerUser } from '../features/user/userSlice';
+import Spinner from './ReusableComponents/Spinner';
 
 const SignUp = () => {
 
-     const {registeredUser , res} = useSelector((state)=>state.user);
+     const {registeredUser , res , isLoading} = useSelector((state)=>state.user);
      const navigate = useNavigate();
 
      useEffect(() => {
@@ -53,10 +54,10 @@ const SignUp = () => {
         style={{
           background: "linear-gradient(180deg, #ACE7FF 0%, #53FFB8 100%)",
         }}
-        className="flex flex-col flex-no-wrap justify-center items-center w-[360px] lg:w-[500px] rounded-[25px] m-4 pt-6 "
+        className="flex flex-col flex-no-wrap justify-center items-center min-[320px]:w-[280px] sm:w-[360px] lg:w-[500px] rounded-[25px] pt-6 "
       >
         <Input
-          className="bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
+          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4 m-4"
           id="name"
           type="text"
           placeholder="Name"
@@ -72,7 +73,7 @@ const SignUp = () => {
         </div>
 
         <Input
-          className="bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
+          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
           id="email"
           type="text"
           placeholder="Email"
@@ -87,7 +88,7 @@ const SignUp = () => {
           ) : null}
         </div>
         <Input
-          className="bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4 m-4"
+          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
           id="mobile"
           type="number"
           placeholder="Phone Number"
@@ -102,7 +103,7 @@ const SignUp = () => {
           ) : null}
         </div>
         <Input
-          className="bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4 m-4"
+          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
           id="password"
           type="password"
           placeholder="Password"
@@ -120,16 +121,16 @@ const SignUp = () => {
           <button
             onClick={() => formik.resetForm()}
             style={{ boxShadow: "8px 8px 4px #0D103C" }}
-            className="bg-[#fff] w-[135px] h-[75px] font-roboto font-bold text-2xl text-[#0D103C] rounded-[20px]  px-4 mx-4 mt-4 mb-8"
+            className="bg-[#fff] w-[100px] h-[75px] font-roboto font-bold  text-[#0D103C] text-2xl rounded-[20px] px-4 mx-4 mt-4 mb-8"
           >
             Reset
           </button>
           <button
             type="submit"
             style={{ boxShadow: "8px 8px 4px #0D103C" }}
-            className="bg-[#fff] w-[135px] h-[75px] text-[#0D103C] rounded-[20px] font-roboto font-bold text-2xl px-4 mx-4 mt-4 mb-8"
+            className="bg-[#fff] w-[100px] h-[75px] font-roboto font-bold  text-[#0D103C] text-2xl rounded-[20px] px-4 mx-4 mt-4 mb-8"
           >
-            Sign Up
+            {isLoading === true ? <Spinner /> : "Sign Up"}
           </button>
         </div>
         {/* <button

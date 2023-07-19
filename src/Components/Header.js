@@ -19,9 +19,9 @@ const Header = () => {
     <div className="flex flex-row flex-wrap justify-center sm:justify-center items-center w-[100%] mt-8 px-16">
       <div className="flex grow justify-center items-center my-2">
         <Link to="/">
-          <p className="leading-snug ont-roboto font-bold text-center items-center text-[#FEE77A] text-5xl ">
-            {`Memories       `}
-            <span className="font-medium text-2xl align-middle">
+          <p className="leading-snug ont-roboto font-bold text-center items-center text-[#FEE77A] text-5xl lg:ml-36">
+            {`Memories `}
+            <span className="font-medium text-3xl align-middle">
               {user !== null ? `of ${user?.name}` : ""}
             </span>
           </p>

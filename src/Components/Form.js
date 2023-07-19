@@ -84,8 +84,8 @@ const Form = () => {
   }
 
   return (
-    <div className="flex flex-col flex-wrap justify-center items-center p-8">
-      <p className="font-roboto font-bold text-[#fff] text-3xl mb-8">
+    <div className="flex flex-col flex-wrap justify-center items-center">
+      <p className="font-roboto font-bold text-[#fff] text-3xl mb-8 min-[320px]:mt-6">
         Add a Memory
       </p>
       <form
@@ -94,9 +94,9 @@ const Form = () => {
         style={{
           background: "linear-gradient(180deg, #FFD976 0%, #FF6464 100%)",
         }}
-        className="flex flex-col flex-no-wrap justify-center items-center w-[360px] lg:w-[450px] rounded-[30px]"
+        className="flex flex-col flex-no-wrap justify-center items-center min-[320px]:w-[280px] sm:w-[450px] rounded-[30px] px-6"
       >
-        <div className="flex justify-start items-center bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] text-[#fff] font-roboto font-[400] text-xl rounded-[15px] px-4 pr-8 m-4">
+        <div className="flex justify-start items-center bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px] h-[75px] text-[#fff] text-[#fff] font-roboto font-[400] text-xl rounded-[15px] px-4 pr-8 m-4">
           <Dropzone
             onDrop={(acceptedFiles) => handleClickUploadImage(acceptedFiles[0])}
           >
@@ -138,7 +138,7 @@ const Form = () => {
           )}
         </div>
         <Input
-          className="form-control bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
+          className="form-control bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4 m-4"
           id="date"
           type="date"
           placeholder="Enter Expiry Date"
@@ -150,7 +150,7 @@ const Form = () => {
           // onBlur={formik.handleBlur("expiry")}
         />
         <Input
-          className="bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
+          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4  m-4"
           id="title"
           type="text"
           placeholder="Title"
@@ -167,7 +167,7 @@ const Form = () => {
           ) : null}
         </div> */}
         <textarea
-          className="font-roboto font-[400] text-xl rounded-[15px] bg-[#0D103C] w-[300px] lg:w-[400px] h-[150px] text-[#fff]
+          className="font-roboto font-[400] text-xl rounded-[15px] bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[150px] text-[#fff]
             text-start p-4 m-4"
           id="description"
           type="text"
@@ -185,7 +185,7 @@ const Form = () => {
           ) : null}
         </div> */}
         <Input
-          className="bg-[#0D103C] w-[300px] lg:w-[400px] h-[75px] text-[#fff] px-4  m-4"
+          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4  m-4"
           id="tags"
           type="text"
           placeholder="Tags"

@@ -10,7 +10,9 @@ const HomePage = () => {
     const { Token, gotUser, isLoading } = useSelector((state) => state.user);
 
     useEffect(() => {
-      dispatch(getUser({ Token: Token }));
+      if(Token !== undefined){
+         dispatch(getUser({ Token: Token }));
+      }
     }, []);
 
   return (
