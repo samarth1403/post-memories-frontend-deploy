@@ -40,7 +40,7 @@ const MemoryItem = ({memory}) => {
   }
 
   return (
-    <div className="p-8">
+    <div className="px-4">
       <div
         className="relative flex flex-col flex-no-wrap flex-shrink-0 justify-center rounded-[33px] min-[320px]:w-[300px] sm:w-[380px] mb-12 mt-4 px-4"
         style={{
