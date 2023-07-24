@@ -16,8 +16,9 @@ const Form = () => {
   const memoryId = location.pathname.split("/")[2];
 
   const [isImgUploaded, setIsImgUploaded] = useState(false);
+  const [isLoading , setIsLoading] = useState(false);
   const { Token } = useSelector((state) => state.user);
-  const { image, isLoading } = useSelector((state) => state.memory);
+  const { image } = useSelector((state) => state.memory);
 
   const stableGetMemory = useCallback(()=>{
     if(memoryId !== undefined){
@@ -59,6 +60,7 @@ const Form = () => {
       setIsImgUploaded(false);
       setTimeout(()=>{
          setFormValues(null);
+         setIsLoading(true);
          dispatch(getUser({Token:Token}))
          dispatch(resetImageState());
          navigate("/");
@@ -88,128 +90,133 @@ const Form = () => {
       <p className="font-roboto font-bold text-[#fff] text-3xl mb-8 min-[320px]:mt-6">
         Add a Memory
       </p>
-      <form
-        //onSubmit={formik.handleSubmit}
-        onSubmit={handleSubmit}
-        style={{
-          background: "linear-gradient(180deg, #FFD976 0%, #FF6464 100%)",
-        }}
-        className="flex flex-col flex-no-wrap justify-center items-center min-[320px]:w-[280px] sm:w-[450px] rounded-[30px] px-6"
-      >
-        <div className="flex justify-start items-center bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px] h-[75px] text-[#fff] text-[#fff] font-roboto font-[400] text-xl rounded-[15px] px-4 pr-8 m-4">
-          <Dropzone
-            onDrop={(acceptedFiles) => handleClickUploadImage(acceptedFiles[0])}
-          >
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
+        {isLoading && <div className='flex justify-center my-8'><Spinner/></div>}
+      {!isLoading && (
+        <form
+          //onSubmit={formik.handleSubmit}
+          onSubmit={handleSubmit}
+          style={{
+            background: "linear-gradient(180deg, #FFD976 0%, #FF6464 100%)",
+          }}
+          className="flex flex-col flex-no-wrap justify-center items-center min-[320px]:w-[280px] sm:w-[450px] rounded-[30px] px-6"
+        >
+          <div className="flex justify-start items-center bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px] h-[75px] text-[#fff] text-[#fff] font-roboto font-[400] text-xl rounded-[15px] px-4 pr-8 m-4">
+            <Dropzone
+              onDrop={(acceptedFiles) =>
+                handleClickUploadImage(acceptedFiles[0])
+              }
+            >
+              {({ getRootProps, getInputProps }) => (
+                <section>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
 
-                  <div className="flex flex-row">
-                    {isLoading && <Spinner />}
-                    {isLoading === false && (
-                      <p className="cursor-pointer">
-                        {isImgUploaded && image !== null
-                          ? "Image Uploading Done"
-                          : "Upload Image of Memory"}
-                      </p>
-                    )}
+                    <div className="flex flex-row">
+                      {isLoading && <Spinner />}
+                      {isLoading === false && (
+                        <p className="cursor-pointer">
+                          {isImgUploaded && image !== null
+                            ? "Image Uploading Done"
+                            : "Upload Image of Memory"}
+                        </p>
+                      )}
+                    </div>
                   </div>
+                </section>
+              )}
+            </Dropzone>
+          </div>
+          <div className="flex flex-col flex-no-wrap justify-center items-center">
+            {image !== null && isImgUploaded === true && (
+              <div className="relative">
+                <div
+                  onClick={() => handleDeleteUploadedImage(image?.public_id)}
+                  className="btn-close absolute top-0 right-0 cursor-pointer"
+                >
+                  <AiFillCloseCircle className="text-3xl" />
                 </div>
-              </section>
-            )}
-          </Dropzone>
-        </div>
-        <div className="flex flex-col flex-no-wrap justify-center items-center">
-          {image !== null && isImgUploaded === true && (
-            <div className="relative">
-              <div
-                onClick={() => handleDeleteUploadedImage(image?.public_id)}
-                className="btn-close absolute top-0 right-0 cursor-pointer"
-              >
-                <AiFillCloseCircle className="text-3xl" />
+                <img
+                  src={image.url}
+                  alt=""
+                  className="w-[200px] h-[200px] rounded-[15px] m-2"
+                />
               </div>
-              <img
-                src={image.url}
-                alt=""
-                className="w-[200px] h-[200px] rounded-[15px] m-2"
-              />
-            </div>
-          )}
-        </div>
-        <Input
-          className="form-control bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4 m-4"
-          id="date"
-          type="date"
-          placeholder="Enter Expiry Date"
-          name="date"
-          value={formValues.date}
-          onChange={handleOnChange}
-          // value={formik.values.expiry}
-          // onChange={formik.handleChange("expiry")}
-          // onBlur={formik.handleBlur("expiry")}
-        />
-        <Input
-          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4  m-4"
-          id="title"
-          type="text"
-          placeholder="Title"
-          name="title"
-          value={formValues.title}
-          onChange={handleOnChange}
-          // value={formik.values.title}
-          // onChange={formik.handleChange("title")}
-          // onBlur={formik.handleBlur("title")}
-        />
-        {/* <div className="text-black font-bold text-lg">
+            )}
+          </div>
+          <Input
+            className="form-control bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4 m-4"
+            id="date"
+            type="date"
+            placeholder="Enter Expiry Date"
+            name="date"
+            value={formValues.date}
+            onChange={handleOnChange}
+            // value={formik.values.expiry}
+            // onChange={formik.handleChange("expiry")}
+            // onBlur={formik.handleBlur("expiry")}
+          />
+          <Input
+            className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4  m-4"
+            id="title"
+            type="text"
+            placeholder="Title"
+            name="title"
+            value={formValues.title}
+            onChange={handleOnChange}
+            // value={formik.values.title}
+            // onChange={formik.handleChange("title")}
+            // onBlur={formik.handleBlur("title")}
+          />
+          {/* <div className="text-black font-bold text-lg">
           {formik.touched.title && formik.errors.title ? (
             <div>{formik.errors.title}</div>
           ) : null}
         </div> */}
-        <textarea
-          className="font-roboto font-[400] text-xl rounded-[15px] bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[150px] text-[#fff]
+          <textarea
+            className="font-roboto font-[400] text-xl rounded-[15px] bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[150px] text-[#fff]
             text-start p-4 m-4"
-          id="description"
-          type="text"
-          placeholder="Description"
-          name="description"
-          value={formValues.description}
-          onChange={handleOnChange}
-          // value={formik.values.description}
-          // onChange={formik.handleChange("description")}
-          // onBlur={formik.handleBlur("description")}
-        />
-        {/* <div className="text-black font-bold text-lg">
+            id="description"
+            type="text"
+            placeholder="Description"
+            name="description"
+            value={formValues.description}
+            onChange={handleOnChange}
+            // value={formik.values.description}
+            // onChange={formik.handleChange("description")}
+            // onBlur={formik.handleBlur("description")}
+          />
+          {/* <div className="text-black font-bold text-lg">
           {formik.touched.description && formik.errors.description ? (
             <div>{formik.errors.description}</div>
           ) : null}
         </div> */}
-        <Input
-          className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4  m-4"
-          id="tags"
-          type="text"
-          placeholder="Tags"
-          name="tags"
-          value={formValues.tags}
-          onChange={handleOnChange}
-          // value={formik.values.tags}
-          // onChange={formik.handleChange("tags")}
-          // onBlur={formik.handleBlur("tags")}
-        />
-        {/* <div className="text-black font-bold text-lg">
+          <Input
+            className="bg-[#0D103C] min-[320px]:w-[250px] sm:w-[400px]  h-[75px] text-[#fff] px-4  m-4"
+            id="tags"
+            type="text"
+            placeholder="Tags"
+            name="tags"
+            value={formValues.tags}
+            onChange={handleOnChange}
+            // value={formik.values.tags}
+            // onChange={formik.handleChange("tags")}
+            // onBlur={formik.handleBlur("tags")}
+          />
+          {/* <div className="text-black font-bold text-lg">
           {formik.touched.tags && formik.errors.tags ? (
             <div>{formik.errors.tags}</div>
           ) : null}
         </div> */}
 
-        <button
-          type="submit"
-          style={{ boxShadow: "8px 8px 4px #0D103C" }}
-          className="bg-[#fff] w-[135px] h-[75px] font-roboto font-bold text-2xl text-[#0D103C] rounded-[20px]  px-4 mx-4 mt-4 mb-8 align-left"
-        >
-          Add
-        </button>
-      </form>
+          <button
+            type="submit"
+            style={{ boxShadow: "8px 8px 4px #0D103C" }}
+            className="bg-[#fff] w-[135px] h-[75px] font-roboto font-bold text-2xl text-[#0D103C] rounded-[20px]  px-4 mx-4 mt-4 mb-8 align-left"
+          >
+            Add
+          </button>
+        </form>
+      )}
     </div>
   );
 };
